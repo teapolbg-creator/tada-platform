@@ -3,7 +3,7 @@
  * All times handled as ISO strings or numeric seconds/milliseconds.
  */
 
-import { GHANA } from '../constants/ghana.js';
+import { GHANA } from '../constants/ghana';
 
 /**
  * Format a duration in seconds for display.

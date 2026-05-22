@@ -4,7 +4,7 @@
  */
 
 import { z } from 'zod';
-import { ghanaPhoneSchema, latLngInputSchema, nonEmptyString } from './common.js';
+import { ghanaPhoneSchema, latLngInputSchema, nonEmptyString } from './common';
 
 const EMERGENCY_TYPES = [
   'cardiac',

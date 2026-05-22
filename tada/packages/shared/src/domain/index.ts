@@ -1,2 +1,2 @@
-export * from './trip.js';
-export * from './patient.js';
+export * from './trip';
+export * from './patient';

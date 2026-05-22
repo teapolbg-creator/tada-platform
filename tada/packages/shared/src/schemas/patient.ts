@@ -7,8 +7,8 @@ import {
   ghanaPhoneSchema,
   ghanaCardSchema,
   nonEmptyString,
-} from './common.js';
-import { SUPPORTED_LANGUAGES } from '../constants/ghana.js';
+} from './common';
+import { SUPPORTED_LANGUAGES } from '../constants/ghana';
 
 export const bloodTypeSchema = z.enum([
   'A+',

@@ -3,7 +3,7 @@
  */
 
 import { z } from 'zod';
-import { ghanaPhoneSchema, otpCodeSchema, nonEmptyString } from './common.js';
+import { ghanaPhoneSchema, otpCodeSchema, nonEmptyString } from './common';
 
 /**
  * Step 1 of phone OTP login: request a code.

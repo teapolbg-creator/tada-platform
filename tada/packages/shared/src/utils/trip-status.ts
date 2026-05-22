@@ -9,7 +9,7 @@
  * If you change the SQL function, change THIS file too. They must agree.
  */
 
-import type { TripStatus } from '../database.types.js';
+import type { TripStatus } from '../database.types';
 
 // ---------------------------------------------------------------------------
 // Transition map. Keys = current status. Values = allowed next statuses.

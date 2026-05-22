@@ -1,3 +1,3 @@
-export * from './ghana.js';
-export * from './pricing.js';
-export * from './triage.js';
+export * from './ghana';
+export * from './pricing';
+export * from './triage';

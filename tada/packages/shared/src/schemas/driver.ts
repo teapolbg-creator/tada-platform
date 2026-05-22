@@ -9,8 +9,8 @@ import {
   nonEmptyString,
   momoNumberSchema,
   latLngInputSchema,
-} from './common.js';
-import { paymentMethodSchema } from './payment.js';
+} from './common';
+import { paymentMethodSchema } from './payment';
 
 /**
  * Driver onboarding / profile update.

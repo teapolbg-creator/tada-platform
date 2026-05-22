@@ -2,9 +2,9 @@
  * Patient domain model.
  */
 
-import type { PatientRow } from '../database.types.js';
+import type { PatientRow } from '../database.types';
 import { z } from 'zod';
-import { emergencyContactSchema } from '../schemas/patient.js';
+import { emergencyContactSchema } from '../schemas/patient';
 
 export interface PatientDomain {
   userId: string;

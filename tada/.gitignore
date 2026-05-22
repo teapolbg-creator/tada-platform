@@ -1,0 +1,45 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Env files — never commit real credentials.
+# The symlinks under apps/*/.env (pointing to ../../.env) are not credentials —
+# they're how each app finds the single root .env. Allow them through.
+.env
+.env.local
+.env.*.local
+!apps/*/.env
+
+# Build output
+dist/
+build/
+.next/
+.turbo/
+.expo/
+.expo-shared/
+
+# Native
+ios/
+android/
+*.apk
+*.aab
+*.ipa
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Misc
+coverage/
+.tsbuildinfo
+*.tsbuildinfo

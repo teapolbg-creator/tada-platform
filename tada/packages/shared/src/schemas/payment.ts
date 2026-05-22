@@ -4,7 +4,7 @@
  */
 
 import { z } from 'zod';
-import { momoNumberSchema, pesewasSchema } from './common.js';
+import { momoNumberSchema, pesewasSchema } from './common';
 
 export const paymentMethodSchema = z.enum([
   'mtn_momo',

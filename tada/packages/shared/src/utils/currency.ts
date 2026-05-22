@@ -5,8 +5,8 @@
  * Cedis (decimal) appear only at the display boundary.
  */
 
-import { GHANA } from '../constants/ghana.js';
-import { PRICING } from '../constants/pricing.js';
+import { GHANA } from '../constants/ghana';
+import { PRICING } from '../constants/pricing';
 
 /**
  * Convert pesewas (integer) to cedis (number with at most 2 decimal places).

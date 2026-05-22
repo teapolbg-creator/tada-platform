@@ -8,7 +8,7 @@ import type {
   TripStatus,
   TripPriority,
   GeoPoint,
-} from '../database.types.js';
+} from '../database.types';
 import {
   isActiveStatus,
   isTerminalStatus,
@@ -17,9 +17,9 @@ import {
   TRIP_STATUS_LABELS,
   TRIP_STATUS_TONES,
   type StatusTone,
-} from '../utils/trip-status.js';
-import { formatCurrency, sumPesewas } from '../utils/currency.js';
-import { formatDuration, formatRelativeTime } from '../utils/time.js';
+} from '../utils/trip-status';
+import { formatCurrency, sumPesewas } from '../utils/currency';
+import { formatDuration, formatRelativeTime } from '../utils/time';
 
 export interface FareBreakdown {
   base: number;

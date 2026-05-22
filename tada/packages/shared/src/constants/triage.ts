@@ -9,7 +9,7 @@
  * NOT a replacement for clinical judgement. The dispatcher can always override.
  */
 
-import type { TripPriority } from '../database.types.js';
+import type { TripPriority } from '../database.types';
 
 export type EmergencyType =
   | 'cardiac'

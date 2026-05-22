@@ -10,7 +10,7 @@
  * We detect mobile network from the prefix to pick the right MoMo provider.
  */
 
-import { GHANA, MOBILE_NETWORKS, type MobileNetworkCode } from '../constants/ghana.js';
+import { GHANA, MOBILE_NETWORKS, type MobileNetworkCode } from '../constants/ghana';
 
 const NON_DIGIT = /\D/g;
 

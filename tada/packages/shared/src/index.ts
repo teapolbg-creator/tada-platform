@@ -11,8 +11,8 @@
  *   import { createTripSchema } from '@tada/shared/schemas';
  */
 
-export * from './database.types.js';
-export * from './constants/index.js';
-export * from './utils/index.js';
-export * from './schemas/index.js';
-export * from './domain/index.js';
+export * from './database.types';
+export * from './constants/index';
+export * from './utils/index';
+export * from './schemas/index';
+export * from './domain/index';

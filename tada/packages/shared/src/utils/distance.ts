@@ -3,7 +3,7 @@
  * these are for client-side rendering and quick estimates.
  */
 
-import type { GeoPoint } from '../database.types.js';
+import type { GeoPoint } from '../database.types';
 
 const EARTH_RADIUS_METERS = 6_371_000;
 

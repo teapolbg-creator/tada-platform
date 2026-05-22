@@ -8,7 +8,7 @@ import {
   normalizeGhanaPhone,
   isValidGhanaPhone,
   detectMobileNetwork,
-} from '../utils/phone.js';
+} from '../utils/phone';
 
 /**
  * Accept any reasonable Ghanaian phone input. After parsing, the value is

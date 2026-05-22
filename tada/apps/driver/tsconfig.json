@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "lib": ["ESNext"],
+    "lib": [
+      "ESNext"
+    ],
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "strict": true,
@@ -18,15 +20,24 @@
     "jsx": "react-native",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": [
+        "src/*"
+      ]
     },
-    "types": ["expo-router/types"]
+    "types": [
+      "expo-router/types"
+    ]
   },
   "include": [
     "**/*.ts",
     "**/*.tsx",
     "nativewind-env.d.ts",
-    "expo-env.d.ts"
+    "expo-env.d.ts",
+    ".expo/types/**/*.ts"
   ],
-  "exclude": ["node_modules", ".expo"]
+  "exclude": [
+    "node_modules",
+    ".expo"
+  ],
+  "extends": "expo/tsconfig.base"
 }

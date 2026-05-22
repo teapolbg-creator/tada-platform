@@ -76,7 +76,11 @@ You can also run everything at once with `pnpm dev` from the root, but for activ
 
 ## What you should see right now
 
-Each app, when launched, renders a placeholder screen that displays values from `@tada/shared`. The text "If you can read this, the [app] is wired up correctly" appears at the bottom of each. If you see that text, the foundation is solid and we can start building real screens.
+- **Patient app** — renders the prototype demo shell: a role picker at `/`, then
+  splash → onboarding → phone-number entry. Tap **Patient** to walk through it.
+  See [`apps/patient/README.md`](apps/patient/README.md) for screen-by-screen detail.
+- **Driver / dispatcher / hospital** — still on the placeholder screen with the
+  `@tada/shared` smoke-test values. Real screens land in later modules.
 
 ## Common scripts
 

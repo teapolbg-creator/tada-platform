@@ -1,0 +1,7 @@
+# Test artifacts produced by playwright-mcp during local dev / debugging.
+# Not part of the project — the working tree of `tada/` has its own .gitignore.
+.playwright-mcp/
+
+# Screenshots dropped at the repo root by playwright-mcp. Anchored with a
+# leading `/` so real PNG assets under tada/apps/**/assets/ are NOT ignored.
+/*.png

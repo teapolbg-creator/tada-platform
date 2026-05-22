@@ -4,5 +4,6 @@ const sharedPreset = require('@tada/config/tailwind.preset.js').default;
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}', './app/**/*.{js,jsx,ts,tsx}'],
   presets: [require('nativewind/preset'), sharedPreset],
+  darkMode: 'class',
   theme: {},
 };

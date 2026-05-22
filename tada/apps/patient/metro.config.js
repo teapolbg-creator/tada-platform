@@ -15,5 +15,7 @@ config.resolver.nodeModulesPaths = [
 ];
 
 config.resolver.disableHierarchicalLookup = true;
+config.resolver.unstable_enableSymlinks = true;
+config.resolver.unstable_enablePackageExports = true;
 
 module.exports = withNativeWind(config, { input: './src/global.css' });

@@ -1,0 +1,50 @@
+{
+  "expo": {
+    "name": "TADA Patient",
+    "slug": "tada-patient",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "scheme": "tadapatient",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "backgroundColor": "#E1252C"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.tada.patient",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "TADA needs your location to dispatch the nearest ambulance to you.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "TADA needs your location to dispatch the nearest ambulance to you."
+      }
+    },
+    "android": {
+      "package": "com.tada.patient",
+      "permissions": [
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION"
+      ],
+      "adaptiveIcon": {
+        "backgroundColor": "#E1252C"
+      }
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "single"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store",
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "TADA needs your location to dispatch the nearest ambulance to you."
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}

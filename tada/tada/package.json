@@ -1,0 +1,28 @@
+{
+  "name": "tada",
+  "version": "0.1.0",
+  "private": true,
+  "description": "TADA — ambulance dispatch platform for Ghana",
+  "scripts": {
+    "dev": "turbo run dev",
+    "dev:patient": "turbo run dev --filter=@tada/patient",
+    "dev:driver": "turbo run dev --filter=@tada/driver",
+    "dev:dispatcher": "turbo run dev --filter=@tada/dispatcher",
+    "dev:hospital": "turbo run dev --filter=@tada/hospital",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "clean": "turbo run clean && rm -rf node_modules"
+  },
+  "devDependencies": {
+    "turbo": "^2.0.6",
+    "typescript": "^5.5.4",
+    "prettier": "^3.3.3"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "packageManager": "pnpm@9.7.0"
+}

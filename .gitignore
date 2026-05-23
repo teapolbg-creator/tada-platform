@@ -1,7 +1,41 @@
-# Test artifacts produced by playwright-mcp during local dev / debugging.
-# Not part of the project — the working tree of `tada/` has its own .gitignore.
-.playwright-mcp/
+# Dependencies
+node_modules/
+.pnp.*
 
-# Screenshots dropped at the repo root by playwright-mcp. Anchored with a
-# leading `/` so real PNG assets under tada/apps/**/assets/ are NOT ignored.
+# Build output / caches
+.next/
+.turbo/
+dist/
+build/
+*.tsbuildinfo
+
+# Expo / React Native
+.expo/
+expo-env.d.ts
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+
+# Next.js generated
+next-env.d.ts
+
+# Env / secrets
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+
+# OS / editor cruft
+.DS_Store
+*.pem
+.idea/
+.vscode/
+
+# Test artifacts produced by playwright-mcp during local dev / debugging
+.playwright-mcp/
 /*.png

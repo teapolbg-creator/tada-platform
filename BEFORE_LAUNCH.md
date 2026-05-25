@@ -60,7 +60,7 @@ The patient app currently uses six categories of hardcoded data flagged with com
 | `home.tsx` `HAS_UNREAD_NOTIFICATIONS` | hardcoded `true` | Query against `notifications` table |
 | `request.tsx` `PICKUP` | "Independence Avenue, Ridge" | Real GPS + reverse geocoding |
 | `ambulance-found.tsx` `DRIVER` | Kwame Asante / Paramedic / 4.9 | Assigned driver's profile, threaded through trip params |
-| `en-route.tsx` `TRIP` | Driver name, ETA, distance, emergency contact, pickup | Real trip record from `trips` table |
+| `tracking.tsx` `TRIP` | Driver name, ETA, distance, emergency contact, pickup | Real trip record from `trips` table |
 
 ### 6. Live map screens
 

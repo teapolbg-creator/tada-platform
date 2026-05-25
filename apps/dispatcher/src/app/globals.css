@@ -12,3 +12,18 @@ body {
   background-color: #f8fafc;
   color: #0f172a;
 }
+
+/* Soft pulse for HIGH priority request cards.
+   Subtle enough to draw the eye without being distracting. */
+@keyframes priorityPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(225, 37, 44, 0.0);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(225, 37, 44, 0.08);
+  }
+}
+
+.priority-pulse {
+  animation: priorityPulse 2.4s ease-in-out infinite;
+}

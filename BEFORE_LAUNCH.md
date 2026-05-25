@@ -10,7 +10,7 @@ Add new items as they appear. Move to "Done" when resolved.
 
 ### 1. Replace direct phone dialing with number-masked calls
 
-**Currently:** The patient app launches the native dialer with the paramedic's real phone number (and the first-aid hotline's real number). See `apps/patient/src/lib/telephony.ts` and the `REPLACE BEFORE PRODUCTION` comment block.
+**Currently:** Both the patient and driver apps launch the native dialer/SMS composer with the other party's real number. See `apps/patient/src/lib/telephony.ts` and `apps/driver/src/lib/telephony.ts` (`launchDialer` / `launchSms`) and the `REPLACE BEFORE PRODUCTION` comment blocks.
 
 **Why this is wrong for production:**
 - Patient and paramedic learn each other's personal phone numbers
@@ -22,8 +22,8 @@ Add new items as they appear. Move to "Done" when resolved.
 - Set up Hubtel Voice (or alternative) — onboarding takes 2-3 weeks
 - Register a TADA outbound number with NCA approval
 - Build an Edge Function `bridge-call` that proxies both numbers through the TADA number
-- Replace the `launchDialer()` calls in `ambulance-found.tsx` and `en-route.tsx` with `triggerProxyCall()` to the new endpoint
-- Update the patient's understanding: they'll see a "TADA Emergency" call coming from a TADA number, not the paramedic's phone
+- Replace the `launchDialer()`/`launchSms()` calls (patient: `ambulance-found.tsx`, `tracking.tsx`; driver: `navigation.tsx`, `pickup.tsx`, `handover.tsx`) with `triggerProxyCall()` / `sendProxySms()` to the new endpoint
+- Update both parties' understanding: they'll see a "TADA Emergency" call coming from a TADA number, not each other's phone
 
 **Estimated effort:** 1 conversation once Hubtel Voice account is live.
 
@@ -64,11 +64,39 @@ The patient app currently uses six categories of hardcoded data flagged with com
 
 ### 6. Live map screens
 
-Currently placeholder cards on the Home screen (`Location Access`), the Request screen (map preview), and the En Route screen (`View Live Tracking` shows an alert). Need Google Maps SDK wired up with proper API keys and location permissions handling.
+Currently placeholder cards on the Home screen (`Location Access`), the Request screen (map preview), the En Route screen (`View Live Tracking` shows an alert), and the **driver app's full-screen navigation** (`apps/driver/src/components/MapPlaceholder.tsx`, used by `navigation.tsx`). The driver's turn-by-turn directions are hardcoded and the speed readout is simulated. Need Google Maps SDK (`react-native-maps`) + Directions API wired up with proper API keys, plus live `expo-location` updates for the driver's position/speed and location-permissions handling.
 
 ### 7. Pre-provisioning UI for drivers/dispatchers/hospital staff
 
 No admin interface yet. Non-patient roles must be created by running SQL migrations that know their phone numbers in advance. Build an admin screen (gated to `admin` role) for adding pre-provisioned users.
+
+---
+
+## 🟣 Driver app (pilot shortcuts)
+
+### 15. Real driver authentication (Employee ID + PIN)
+
+**Currently:** `apps/driver/app/login.tsx` accepts any non-empty Employee ID + any 4-digit PIN. No verification happens.
+
+**What needs to change:** Back the login with Supabase auth + a `drivers` profile row keyed by the station-issued Employee ID. Drivers use ID + PIN rather than phone OTP because the device may be a shared in-vehicle tablet. Pre-provisioning of driver accounts ties into item 7.
+
+### 16. Replace driver-app mock data with real queries
+
+`apps/driver/src/lib/mockData.ts` is entirely hardcoded and flagged with a `REPLACE BEFORE PRODUCTION` block. Categories:
+
+| Constant | What | Replaces with |
+|---|---|---|
+| `DRIVER` | Yaw Boateng, certs, ambulance, rating | Logged-in driver's `drivers` profile row |
+| `INCOMING_REQUEST` | Patient snapshot + medical alerts + pickup | Realtime `trips` assignment joined to patient profile |
+| `DESTINATION_HOSPITAL` / `DISPATCH` | Names + numbers | Assigned hospital row + dispatch config |
+| `STATS` / `WEEKLY_BREAKDOWN` / `PAYMENT_SCHEDULE` | Trips, earnings, hours, payouts | Aggregated from `trips` + `payments` |
+| `RECENT_RATINGS` | Feedback notes | `ratings` table for this driver |
+
+### 17. Real request dispatch (replace the demo button)
+
+**Currently:** The dashboard's "Simulate Incoming Request" button manually opens the request screen, and the Online/Offline toggle is local state only.
+
+**What needs to change:** When the driver is online, write `status='available'` to Supabase; subscribe to a realtime channel so dispatch can push trip assignments. The 15-second accept timer should auto-decline back to dispatch for re-routing (the timer itself already works). Remove the demo button.
 
 ---
 

@@ -31,6 +31,19 @@ export default {
           800: '#581C87',
           900: '#3B0764',
         },
+        // Driver app brand — emerald (the "go / on-duty" colour; visually
+        // distinct from the patient's red and the dispatcher's purple, and
+        // high-contrast on the driver app's dark in-vehicle theme)
+        driver: {
+          50: '#ECFDF5',
+          100: '#D1FAE5',
+          200: '#A7F3D0',
+          400: '#34D399',
+          500: '#10B981',
+          600: '#059669',
+          800: '#065F46',
+          900: '#064E3B',
+        },
         // Semantic status colors (mapped to trip status tones)
         status: {
           neutral: '#6B7280',

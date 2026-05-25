@@ -1,6 +1,15 @@
-import { Alert, Platform, Pressable, ScrollView, Text, View } from 'react-native';
+import { Alert, Linking, Platform, Pressable, ScrollView, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { router } from 'expo-router';
+
+// Each non-patient role lives in its own app. In dev these run on fixed local
+// ports; for a hosted demo, point them at deployed URLs via env vars. Set a var
+// to an empty string to mark that app "coming soon" again.
+const APP_URLS = {
+  driver: process.env.EXPO_PUBLIC_DRIVER_URL ?? 'http://localhost:8082',
+  operator: process.env.EXPO_PUBLIC_OPERATOR_URL ?? 'http://localhost:3001',
+  hospital: process.env.EXPO_PUBLIC_HOSPITAL_URL ?? 'http://localhost:3002',
+};
 
 type Role = {
   key: 'patient' | 'driver' | 'operator' | 'hospital';
@@ -8,7 +17,8 @@ type Role = {
   description: string;
   icon: string;
   iconBg: string;
-  enabled: boolean;
+  // The patient flow is in-app; the others open their own app via this URL.
+  href?: string;
 };
 
 const ROLES: Role[] = [
@@ -18,7 +28,6 @@ const ROLES: Role[] = [
     description: 'Request emergency ambulance',
     icon: '👤',
     iconBg: 'bg-blue-500',
-    enabled: true,
   },
   {
     key: 'driver',
@@ -26,7 +35,7 @@ const ROLES: Role[] = [
     description: 'Accept and respond to emergencies',
     icon: '🚑',
     iconBg: 'bg-green-500',
-    enabled: false,
+    href: APP_URLS.driver,
   },
   {
     key: 'operator',
@@ -34,7 +43,7 @@ const ROLES: Role[] = [
     description: 'Coordinate emergency response',
     icon: '🎧',
     iconBg: 'bg-purple-500',
-    enabled: false,
+    href: APP_URLS.operator,
   },
   {
     key: 'hospital',
@@ -42,9 +51,14 @@ const ROLES: Role[] = [
     description: 'Manage incoming patients',
     icon: '🏥',
     iconBg: 'bg-tada-500',
-    enabled: false,
+    href: APP_URLS.hospital,
   },
 ];
+
+// A role is launchable if it's the in-app patient flow or has a non-empty URL.
+function isAvailable(role: Role) {
+  return role.key === 'patient' || !!role.href;
+}
 
 function notifyComingSoon(role: string) {
   const message = `${role} prototype is coming soon.`;
@@ -62,7 +76,20 @@ export default function Home() {
       router.push('/splash');
       return;
     }
-    notifyComingSoon(role.title);
+    if (!role.href) {
+      notifyComingSoon(role.title);
+      return;
+    }
+    if (Platform.OS === 'web') {
+      // Navigate the current tab. window.open(_, '_blank') from a Pressable
+      // handler runs a tick after the raw click, so browsers treat it as
+      // programmatic and the popup blocker kills it — location.assign never is.
+      (globalThis as { location?: { assign: (url: string) => void } }).location?.assign(
+        role.href
+      );
+    } else {
+      Linking.openURL(role.href);
+    }
   }
 
   return (
@@ -84,7 +111,7 @@ export default function Home() {
               <Pressable
                 onPress={() => selectRole(role)}
                 className={`flex-row items-center bg-white rounded-card p-5 shadow-sm ${
-                  role.enabled ? 'active:opacity-80' : 'opacity-90'
+                  isAvailable(role) ? 'active:opacity-80' : 'opacity-90'
                 }`}
               >
                 <View

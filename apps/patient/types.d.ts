@@ -12,6 +12,11 @@ declare namespace NodeJS {
     EXPO_PUBLIC_SUPABASE_ANON_KEY?: string;
     EXPO_PUBLIC_GOOGLE_MAPS_API_KEY_ANDROID?: string;
     EXPO_PUBLIC_GOOGLE_MAPS_API_KEY_IOS?: string;
+    // Role launcher → sibling app URLs (see app/index.tsx). Optional; falls
+    // back to local dev ports when unset.
+    EXPO_PUBLIC_DRIVER_URL?: string;
+    EXPO_PUBLIC_OPERATOR_URL?: string;
+    EXPO_PUBLIC_HOSPITAL_URL?: string;
   }
 }
 

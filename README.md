@@ -74,12 +74,50 @@ pnpm dev:hospital
 
 You can also run everything at once with `pnpm dev` from the root, but for active development the per-app commands give cleaner output.
 
+## Running the demo
+
+The patient app's home screen doubles as a **role launcher** for the whole
+platform. Each card opens that role's app:
+
+| Role | App | Runs on |
+|------|-----|---------|
+| Patient | the patient app itself (in-app) | the launcher's own URL |
+| Ambulance Driver | driver | http://localhost:8082 |
+| Dispatch Operator | dispatcher | http://localhost:3001 |
+| Hospital Admin | hospital | http://localhost:3002 |
+
+To click through the full demo on web, start all four apps — one terminal each,
+each on its fixed port:
+
+```bash
+pnpm dev:patient     # the launcher — press 'w' for web
+pnpm dev:driver      # → http://localhost:8082
+pnpm dev:dispatcher  # → http://localhost:3001
+pnpm dev:hospital    # → http://localhost:3002
+```
+
+Open the patient app in your browser and pick a role. **Patient** walks through
+the in-app flow; the other cards navigate to that app's URL. If an app isn't
+running, the page won't load — start that app and use the browser's back button
+to return to the launcher.
+
+**Hosting the demo?** Point each card at a deployed URL via `EXPO_PUBLIC_DRIVER_URL`,
+`EXPO_PUBLIC_OPERATOR_URL`, and `EXPO_PUBLIC_HOSPITAL_URL` in `.env`. Leave them
+unset to use the local ports above; set one to an empty string to show that role
+as "coming soon".
+
+> If a screen renders as unstyled plain text, you're on a stale Metro bundle.
+> Stop the app and restart it with a cleared cache, e.g. `pnpm dev:driver` after
+> `cd apps/driver && rm -rf .expo` — or start with `expo start -c`.
+
 ## What you should see right now
 
-- **Patient app** — renders the prototype demo shell: a role picker at `/`, then
+- **Patient app** — renders the prototype demo shell: a role launcher at `/`, then
   splash → onboarding → phone-number entry. Tap **Patient** to walk through it.
   See [`apps/patient/README.md`](apps/patient/README.md) for screen-by-screen detail.
-- **Driver / dispatcher / hospital** — still on the placeholder screen with the
+- **Driver app** — full pilot flow: login → dispatch → handover. Reach it from the
+  launcher's **Ambulance Driver** card, or run `pnpm dev:driver` directly.
+- **Dispatcher / hospital** — still on the placeholder screen with the
   `@tada/shared` smoke-test values. Real screens land in later modules.
 
 ## Common scripts
